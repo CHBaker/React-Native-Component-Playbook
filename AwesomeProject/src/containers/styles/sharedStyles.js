@@ -1,5 +1,17 @@
 import {StyleSheet, Pressable} from 'react-native';
 export default StyleSheet.create({
+  headerContainer: {
+    paddingHorizontal: 25,
+    marginBottom: 10,
+    backgroundColor: 'lightsalmon',
+    borderRadius: 6,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: 'black',
+    textAlign: 'center',
+  },
   footerContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
