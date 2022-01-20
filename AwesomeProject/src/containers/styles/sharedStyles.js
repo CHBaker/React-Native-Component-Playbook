@@ -1,5 +1,26 @@
 import {StyleSheet, Pressable} from 'react-native';
 export default StyleSheet.create({
+  footerContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+    marginBottom: 20,
+  },
+  footerImage: {
+    height: 75,
+    width: 75,
+    resizeMode: 'cover',
+  },
+  headerImage: {
+    width: '100%',
+    height: 250,
+    resizeMode: 'cover',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: 'lightsalmon',
+    paddingTop: 2,
+    marginTop: 25,
+  },
   storyImageSmall: {
     width: 120,
     height: 120,
