@@ -10,7 +10,6 @@
     "test": "jest",
     "lint": "eslint ."
   },
-
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.8.9",
@@ -30,6 +29,7 @@
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "2.5.1",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
