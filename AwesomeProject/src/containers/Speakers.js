@@ -1,36 +1,88 @@
-import React from 'react';
-import {Text, FlatList, View, Image} from 'react-native';
+import React, {useState} from 'react';
+import {Text, FlatList, View, TextInput, Pressable, Image} from 'react-native';
 import {speakers} from '../data/speakers.json';
 import styles from './styles/sharedStyles.js';
+import {Footer} from '../components/Footer';
+import {Header} from '../components/Header';
 
 function Speakers() {
+  const [filteredSpeakers, setFilteredSpeakers] = useState(speakers);
+
+  const getSearchText = (text) => {
+    let filteredSpeakersList = speakers.filter((value) =>
+      value.sessions[0].name.toLowerCase().includes(text.toLowerCase()),
+    );
+  };
+
   return (
     <View>
+      <SearchSessions getSearchText={getSearchText} />
       <FlatList
         data={speakers}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         ItemSeparatorComponent={SeparatorComponent}
         ListHeaderComponent={HeaderComponent}
-        ListFooterComponent={FooterComponent}
+        ListFooterComponent={Footer}
+        keyboardDismissMode={'on-drag'}
+        keyboardShouldPersistTaps={'always'}
       />
     </View>
   );
 }
 
-const renderItem = ({item, index}) => {
+const SearchSessions = (props) => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = (text) => {
+    setSearchText(text);
+    props.getSearchText(text);
+  };
+
+  const clearSearch = () => {
+    this.textInput.clear();
+    props.getSearchText('');
+  };
+
   return (
-    <View>
-      <SpeakersList id={index} name={item.name} bio={item.bio} />
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchInput}
+        value={searchText}
+        onChangeText={(text) => handleSearch(text)}
+        placeholder={'Search Sessions'}
+        returnKeyType={'go'}
+        ref={(ref) => (this.textInput = ref)}
+      />
+      <Pressable onPress={clearSearch} style={styles.clearContainer}>
+        <Image
+          source={require('../images/multiply-1_Orange.png')}
+          style={styles.clearImage}
+        />
+      </Pressable>
     </View>
   );
 };
 
-const SpeakersList = ({id, name, bio}) => {
+const renderItem = ({item, index}) => {
+  return (
+    <View>
+      <SpeakersList
+        id={index}
+        name={item.name}
+        bio={item.bio}
+        sesssion={item.sessions[0].name}
+      />
+    </View>
+  );
+};
+
+const SpeakersList = ({id, name, bio, session}) => {
   return (
     <View style={styles.sectionContainer} key={id}>
       <Text style={styles.sectionTitle}>{'Speaker Name: ' + name}</Text>
       <Text style={styles.sectionDescription}>{'Bio: ' + bio}</Text>
+      <Text style={styles.sectionDescriptionBold}>{'Session: ' + session}</Text>
     </View>
   );
 };
@@ -39,27 +91,12 @@ const SeparatorComponent = () => {
   return <View style={styles.separator} />;
 };
 
-const HeaderComponent = () => {
-  return (
-    <View style={styles.sectionContainer}>
-      <Image
-        style={styles.headerImage}
-        source={require('../images/girl.png')}
-      />
-      <Text style={styles.sectionDescription}>Awesome Speakers Lineup!!</Text>
-    </View>
-  );
-};
+const HeaderComponent = () => (
+  <Header
+    image={require('../images/girl.png')}
+    heading={'Awesome Speakers'}
+    style={styles.sectionTitleGreen}
+  />
+);
 
-const FooterComponent = () => {
-  return (
-    <View style={styles.footerContainer}>
-      <Image style={styles.footerImage} source={require('../images/G.png')} />
-      <Text styles={styles.sectionDescription}>
-        {' '}
-        All rights reserved by Globomantics Tech Conference 2020
-      </Text>
-    </View>
-  );
-};
 export default Speakers;

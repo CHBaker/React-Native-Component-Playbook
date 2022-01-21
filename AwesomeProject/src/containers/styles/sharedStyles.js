@@ -1,5 +1,44 @@
 import {StyleSheet, Pressable} from 'react-native';
 export default StyleSheet.create({
+  clearContainer: {
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    paddingRight: 50,
+    paddingBottom: 1,
+    justifyContent: 'center',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  clearImage: {
+    height: 20,
+    width: 20,
+  },
+  container: {
+    height: 53,
+    width: 450,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  searchInput: {
+    backgroundColor: 'white',
+    flex: 1,
+    paddingBottom: 10,
+    paddingTop: 15,
+    paddingLeft: 20,
+    flexDirection: 'column',
+    color: 'black',
+    lineHeight: 20,
+    letterSpacing: 0,
+    fontSize: 20,
+    justifyContent: 'center',
+  },
+  clickableText: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'green',
+  },
   headerContainer: {
     paddingHorizontal: 25,
     marginBottom: 10,
@@ -72,10 +111,21 @@ export default StyleSheet.create({
     fontWeight: '600',
     color: 'black',
   },
+  sectionTitleGreen: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: 'green',
+  },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
+    color: 'black',
+  },
+  sectionDescriptionBold: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '800',
     color: 'black',
   },
   sectionTitleStory: {
